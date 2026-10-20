@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Sequencing | DAA Mini Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">JS</div>
+    <div>
+      <p class="eyebrow">DESIGN & ANALYSIS OF ALGORITHMS</p>
+      <h1>Job Sequencing with Deadlines</h1>
+    </div>
+    <span class="tag">Greedy Algorithm</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel intro">
+      <div>
+        <p class="eyebrow">MINI PROJECT</p>
+        <h2>Maximize profit.<br><span>Schedule smarter.</span></h2>
+        <p class="muted">Enter jobs with a deadline and profit. The greedy algorithm schedules the most profitable jobs in the latest available slots before their deadlines.</p>
+      </div>
+      <div class="stat-row">
+        <div class="mini-stat"><span class="stat-icon">↗</span><div><strong>Greedy</strong><small>Strategy</small></div></div>
+        <div class="mini-stat"><span class="stat-icon">O(n log n + nD)</span><div><strong>Time complexity</strong><small>Basic slot search</small></div></div>
+      </div>
+    </section>
+
+    <section class="panel input-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">STEP 01</p><h2>Add your jobs</h2></div>
+        <button id="sampleBtn" class="button button-light" type="button">Load sample</button>
+      </div>
+      <form id="jobForm" class="job-form">
+        <label>Job ID<input id="jobId" type="text" placeholder="e.g. J6" maxlength="12" required /></label>
+        <label>Deadline<input id="deadline" type="number" min="1" max="1000" placeholder="e.g. 2" required /></label>
+        <label>Profit<input id="profit" type="number" min="1" max="1000000000" placeholder="e.g. 100" required /></label>
+        <button class="button button-primary add-button" type="submit">+ Add job</button>
+      </form>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job ID</th><th>Deadline</th><th>Profit</th><th></th></tr></thead>
+          <tbody id="jobsBody"></tbody>
+        </table>
+        <div id="emptyJobs" class="empty-state">No jobs yet. Add a job or load the sample dataset.</div>
+      </div>
+      <div class="actions">
+        <button id="runBtn" class="button button-primary" type="button">Run scheduling algorithm <span>→</span></button>
+        <button id="clearBtn" class="button button-light" type="button">Clear all</button>
+      </div>
+      <p id="message" class="message" role="status"></p>
+    </section>
+
+    <section class="results-grid">
+      <div class="panel result-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">STEP 02</p><h2>Schedule result</h2></div>
+          <span id="resultBadge" class="tag tag-muted">Not run yet</span>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span>Total profit</span><strong id="totalProfit">—</strong></div>
+          <div class="metric"><span>Jobs scheduled</span><strong id="scheduledCount">—</strong></div>
+          <div class="metric"><span>Jobs skipped</span><strong id="skippedCount">—</strong></div>
+        </div>
+        <div class="schedule-wrap">
+          <h3>Time-slot timeline</h3>
+          <div id="timeline" class="timeline"><p class="muted">Run the algorithm to view your schedule.</p></div>
+        </div>
+        <div class="table-wrap result-table-wrap">
+          <table>
+            <thead><tr><th>Slot</th><th>Scheduled job</th><th>Profit</th></tr></thead>
+            <tbody id="scheduleBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <aside class="panel explanation-panel">
+        <p class="eyebrow">HOW IT WORKS</p>
+        <h2>Greedy, step by step</h2>
+        <ol class="steps">
+          <li><span>1</span><div><strong>Sort by profit</strong><p>Consider the highest-profit job first.</p></div></li>
+          <li><span>2</span><div><strong>Find a free slot</strong><p>Search backward from its deadline.</p></div></li>
+          <li><span>3</span><div><strong>Schedule or skip</strong><p>Place it if a slot is free; otherwise skip it.</p></div></li>
+          <li><span>4</span><div><strong>Calculate total profit</strong><p>Add the profits of scheduled jobs.</p></div></li>
+        </ol>
+        <div class="complexity-box"><span>Algorithm complexity</span><strong>O(n log n + nD)</strong><p>n = number of jobs, D = maximum usable deadline.</p></div>
+      </aside>
+    </section>
+    <footer>DAA Mini Project · C++ implementation included · Built for learning and demonstration</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
